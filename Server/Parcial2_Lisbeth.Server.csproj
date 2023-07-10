@@ -22,5 +22,9 @@
     <ProjectReference Include="..\Shared\Parcial2_Lisbeth.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 
 </Project>
