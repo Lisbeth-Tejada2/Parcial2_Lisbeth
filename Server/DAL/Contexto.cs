@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Parcial2_Lisbeth.Shared;
+using Parcial2_Lisbeth.Shared.Models;
 
 namespace Parcial2_Lisbeth.Server.DAL
 {

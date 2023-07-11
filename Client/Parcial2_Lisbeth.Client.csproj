@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Shared\Parcial2_Lisbeth.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Registros\" />
+  </ItemGroup>
+
 </Project>
