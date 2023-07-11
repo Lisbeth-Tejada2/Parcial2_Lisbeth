@@ -1,0 +1,284 @@
+﻿@page "/RegistroProductos"
+@page "/RegistroProductos/{ProductoId:int}"
+@using System.Net.Http.Json;
+@using Parcial2_Lisbeth.Client.Extensors;
+@using Parcial2_Lisbeth.Shared.Models;
+@using Radzen;
+@inject HttpClient httpClient
+@inject NotificationService notify
+
+<EditForm Model="entradas" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <fieldset>
+        <div class="card">
+
+            <div class="card-header">
+
+                <h1>Entrada de Productos</h1>
+
+            </div>
+            <div class="card-body">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label>ID</label>
+                        <InputNumber @bind-Value="entradas.EntradaId" class="form-control"></InputNumber>
+                        <button type="button" class="btn btn-outline-primary oi oi-magnifying-glass" @onclick="Buscar"></button>
+                    </div>
+                </div>
+
+                @*Fecha*@
+                <div class="col-md-6">
+                    <label>Fecha</label>
+                    <InputDate @bind-Value="entradas.Fecha" class="form-control"></InputDate>
+                    <ValidationMessage For="@(() => entradas.Fecha)" />
+                </div>
+
+                @*Concepto*@
+                <label>Concepto</label>
+                <InputText @bind-Value="entradas.Concepto" class="form-control"></InputText>
+                <ValidationMessage For="@(() => entradas.Concepto)" />
+
+                <hr>
+                @*DETALLE*@
+                <fieldset>
+                    <legend>Utilizados</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Producto: </label>
+                            <InputNumber @bind-Value="entradasDetalle.ProductoId" class="form-control"></InputNumber>
+                                @foreach (var item in L_Productos)
+                                {
+                                    <option value="@item.ProductoId">@item.Descripcion</option>
+                                }
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Cantidad</label>
+                            <InputNumber @bind-Value="entradasDetalle.CantidadUtilizada" class="form-control"></InputNumber>
+                            <button type="button" class="btn btn-dark" @onclick="AgregarDetalle">Agregar<i class="oi oi-plus" /></button>
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto ID</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in this.entradas.entradasDetalle)
+                            {
+                                <tr>
+                                    <td>@item.ProductoId</td>
+                                    <td>@item.Entradas.Buscar(item.ProductoId)?.Descripcion</td>
+                                    <td>@item.CantidadUtilizada</td>
+                                    <td><button class="btn btn-danger" @onclick=@(() => EliminarDetalle(item.DetalleId))><i class="oi oi-trash" /></button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <hr>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <label>Total:</label>
+                            <input @bind-value="Total" class="form-control"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <hr>
+                <fieldset>
+                    <legend>Producido</legend>
+                    <div class="row">
+                        <div class="col-3">
+                            <select @bind="entradas.ProductoId" class="form-control">
+                                @foreach (var item in L_Productos)
+                                {
+                                    <option value="@item.ProductoId">@item.Descripcion</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-2">
+                            <input @bind-value="entradas.CantidadProducida" class="form-control" placeholder="Cantidad Producida"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="card-footer d-flex justify-content-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary" @onclick="Nuevo">Nuevo <i class="oi oi-file"/></button>
+                    <button type="submit" class="btn btn-outline-success" @onclick="Guardar">Guardar <i class="oi oi-document"/></button>
+                    <button type="button" class="btn btn-outline-danger" @onclick="Eliminar">Eliminar <i class="oi oi-trash"/></button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public int ProductoId { get; set; }
+    public Entradas entradas { get; set; } = new Entradas();
+    public EntradasDetalle entradasDetalle { get; set; } = new EntradasDetalle();
+    public int Total { get; set; } = 0;
+    public int Cantidad { get; set; }
+    public List<Productos> L_Productos { get; set; } = new List<Productos>();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var Productos =  await httpClient.GetFromJsonAsync<List<Productos>>($"api/Productos");
+        
+        if(Productos is not null)
+        {
+            L_Productos = Productos;
+        }
+    }
+
+    public void Nuevo()
+    {
+        this.entradas = new Entradas();
+    }
+
+    public async Task Buscar()
+    {
+        var entradaEncontrada = await httpClient.GetFromJsonAsync<Entradas>($"api/Entradas/{entradas.EntradaId}");
+
+        if(entradaEncontrada != null)
+        {
+            this.entradas = entradaEncontrada;
+            StateHasChanged();
+            notify.ShowNotification(titulo: "Encontrado", mensaje: "Se ha encontrado", NotificationSeverity.Info);
+        }
+        else
+        {
+            notify.ShowNotification(titulo: "No encontrado", mensaje: "Lo sentimos, no existe", NotificationSeverity.Error);
+        }
+    }
+
+    public bool Validar()
+    {
+        if(string.IsNullOrEmpty(entradas.Concepto))
+        {
+            return false;
+        }
+        if(entradas.PesoTotal < 0)
+        {
+            return false;
+        }
+        if(entradas.ProductoId < 0)
+        {
+            return false;
+        }
+        if(entradas.CantidadProducida < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public bool ValidarDetalle()
+    {
+        if(entradasDetalle.ProductoId < 0)
+        {
+            return false;
+        }
+        if(entradasDetalle.CantidadUtilizada < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public async Task Guardar()
+    {
+        using var response = await httpClient.PostAsJsonAsync("api/Entrada", entradas);
+
+        if(Validar())
+        {
+           if(!response.IsSuccessStatusCode)
+            {
+                return;
+            }
+        
+            var entradaDevuelta = await response.Content.ReadFromJsonAsync<Entradas>();
+        
+            if(entradaDevuelta is not null)
+            {
+                this.entradas = entradaDevuelta;
+                StateHasChanged();
+                Nuevo();
+            } 
+        }
+    }
+
+    public async Task Eliminar()
+    {
+        using var response = await httpClient.DeleteAsync($"api/Entrada/{entradas.EntradaId}");
+
+        if(Validar())
+        {
+           if(!response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            else
+            {
+                Nuevo();
+            } 
+        }
+    }
+
+    private async Task<Entradas> BuscarEntradas(int EntradaId)
+    {
+        Entradas entradas = new Entradas();
+        var entradaEncontrada = await httpClient.GetFromJsonAsync<Entradas>($"api/Entradas/{entradas.EntradaId}");
+
+        if (entradaEncontrada != null)
+        {
+            return entradas = entradaEncontrada;
+        }
+        else
+        {
+            return new Entradas();
+        }
+    }
+
+    public void AgregarDetalle()
+    {
+        if(ValidarDetalle())
+        {
+            if(entradas != null)
+            {
+                entradasDetalle.EntradaId = entradas.EntradaId;
+
+                entradas.EntradasDetalle.Add(entradasDetalle);
+                entradasDetalle = new EntradasDetalle();
+            }
+        }
+    }
+
+    public void EliminarDetalle(EntradasDetalle detalle)
+    {
+        var detalleEncontrado = entradas.EntradasDetalle.Find(e => e.DetalleId == detalle.DetalleId);
+
+        if(detalleEncontrado != null)
+        {
+            var entrada = BuscarEntradas(detalleEncontrado.ProductoId);
+            detalle = detalleEncontrado;
+            entradas.EntradasDetalle.Remove(detalle);
+        }
+    }
+}
