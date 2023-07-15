@@ -18,13 +18,13 @@ namespace Parcial2_Lisbeth.Shared.Models
         [Required(ErrorMessage = "El tipo es obligatorio") ]
         public int Tipo { get; set; } 
 
-        [Required(ErrorMessage = "Es necesario especifcar la cantidad de productos que existen") ]
+        [Required(ErrorMessage = "La cantidad que existen de los productos es obligatoria") ]
         public int Existencia { get; set; }
 
         [Required(ErrorMessage = "El precio de venta es obligatorio") ]
-        public double PrecioCompra { get; set; }
+        public double PrecioDeCompra { get; set; }
 
         [Required(ErrorMessage = "El precio de compra es obligatorio") ]
-        public double PrecioVenta { get; set; }
+        public double PrecioDeVenta { get; set; }
     }
 }

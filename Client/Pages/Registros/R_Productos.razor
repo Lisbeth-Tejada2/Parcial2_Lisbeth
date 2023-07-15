@@ -182,7 +182,7 @@
                 }
 
                 StateHasChanged();
-                notify.ShowNotification(titulo: "Encontrado", mensaje: "La entrada se ha encontrado con exito",
+                notify.ShowNotification(titulo: "Encontrado", mensaje: "Entrada encontrada",
                 NotificationSeverity.Info);
                 return true;
             }
@@ -193,7 +193,7 @@
         }
         catch
         {
-            notify.ShowNotification(titulo: "No encontrado", mensaje: "Esa entrada no existe", NotificationSeverity.Warning);
+            notify.ShowNotification(titulo: "No encontrado", mensaje: "Entrada no existente", NotificationSeverity.Warning);
             return false;
         }
     }
@@ -261,17 +261,17 @@
                 {
                     this.entradas = entradaDevuelta;
                     Nuevo();
-                    notify.ShowNotification(titulo: "Guardado", mensaje: "El producto se ha guardado con exito",
+                    notify.ShowNotification(titulo: "Guardado", mensaje: "Se ha guardado correctamente",
                     NotificationSeverity.Success);
                 }
                 else
                 {
-                    notify.ShowNotification(titulo: "No Guardado", mensaje: "No hay nada para guardar", NotificationSeverity.Error);
+                    notify.ShowNotification(titulo: "No Guardado", mensaje: "No guardado", NotificationSeverity.Error);
                 }
             }
             else
             {
-                notify.ShowNotification(titulo: "Error", mensaje: "Ha ocurrido un error, intentelo de nuevo",
+                notify.ShowNotification(titulo: "Error", mensaje: "¡ERROR! , Intente nuevamente",
                 NotificationSeverity.Error);
             }
         }
@@ -286,13 +286,13 @@
             if (!response.IsSuccessStatusCode)
             {
 
-                notify.ShowNotification(titulo: "No eliminado", mensaje: "No hay nada por eliminar", NotificationSeverity.Warning);
+                notify.ShowNotification(titulo: "No eliminado", mensaje: "No eliminado", NotificationSeverity.Warning);
                 return;
             }
             else
             {
                 Nuevo();
-                notify.ShowNotification(titulo: "Eliminado", mensaje: "El producto se ha eliminado correctamente",
+                notify.ShowNotification(titulo: "Eliminado", mensaje: "Se ha eliminado correctamente",
                 NotificationSeverity.Error);
             }
         }
@@ -304,7 +304,7 @@
         {
             if (entradasDetalle.CantidadUtilizada <= 0)
             {
-                notify.ShowNotification(titulo: "Error", mensaje: "La cantidad a utilizar debe ser mayor que cero",
+                notify.ShowNotification(titulo: "Error", mensaje: "La cantidad debe ser mayor que cero",
                 NotificationSeverity.Warning);
                 return;
             }
@@ -317,7 +317,7 @@
 
                 if (entradasDetalle.CantidadUtilizada > producto.Existencia)
                 {
-                    notify.ShowNotification(titulo: "Error", mensaje: "La cantidad a utilizar es mayor que la existencia del producto",
+                    notify.ShowNotification(titulo: "Error", mensaje: "La cantidad es mayor que la existencia del producto",
                     NotificationSeverity.Warning);
                     return;
                 }

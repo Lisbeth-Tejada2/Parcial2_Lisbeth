@@ -21,8 +21,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Mani",
                     Tipo = 0,
                     Existencia = 250,
-                    PrecioCompra = 5,
-                    PrecioVenta = 8
+                    PrecioDeCompra = 5,
+                    PrecioDeVenta = 8
                 },
 
                 new Productos
@@ -31,8 +31,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Pistachos",
                     Tipo = 0,
                     Existencia = 300,
-                    PrecioCompra = 15,
-                    PrecioVenta = 18
+                    PrecioDeCompra = 15,
+                    PrecioDeVenta = 18
                 },
 
                 new Productos
@@ -41,8 +41,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Pasas",
                     Tipo = 0,
                     Existencia = 130,
-                    PrecioCompra = 5,
-                    PrecioVenta = 8
+                    PrecioDeCompra = 5,
+                    PrecioDeVenta = 8
                 },
 
                 new Productos
@@ -51,8 +51,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Ciruelas",
                     Tipo = 0,
                     Existencia = 350,
-                    PrecioCompra = 10,
-                    PrecioVenta = 15
+                    PrecioDeCompra = 10,
+                    PrecioDeVenta = 15
                 },
 
                 new Productos
@@ -61,8 +61,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Mixto MPP 0.5Lb",
                     Tipo = 1,
                     Existencia = 320,
-                    PrecioCompra = 30,
-                    PrecioVenta = 35
+                    PrecioDeCompra = 30,
+                    PrecioDeVenta = 35
                 },
 
                 new Productos
@@ -71,8 +71,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Mixto MPC 0.5Lb",
                     Tipo = 1,
                     Existencia = 310,
-                    PrecioCompra = 45,
-                    PrecioVenta = 50
+                    PrecioDeCompra = 45,
+                    PrecioDeVenta = 50
                 },
 
                 new Productos
@@ -81,8 +81,8 @@ namespace Parcial2_Lisbeth.Server.DAL
                     Descripcion = "Mixto MPP 0.2Lb",
                     Tipo = 1,
                     Existencia = 250,
-                    PrecioCompra = 20,
-                    PrecioVenta = 29
+                    PrecioDeCompra = 20,
+                    PrecioDeVenta = 29
                 }
             );
         }
