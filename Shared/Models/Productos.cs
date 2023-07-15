@@ -11,8 +11,20 @@ namespace Parcial2_Lisbeth.Shared.Models
     {
         [Key]
         public int ProductoId { get; set; }
+
+        [Required(ErrorMessage = "La descripcion es un campo obligatorio") ]
         public string Descripcion { get; set; } = string.Empty;
-        public float Tipo { get; set; }
+
+        [Required(ErrorMessage = "El tipo es obligatorio") ]
+        public int Tipo { get; set; } 
+
+        [Required(ErrorMessage = "Es necesario especifcar la cantidad de productos que existen") ]
         public int Existencia { get; set; }
+
+        [Required(ErrorMessage = "El precio de venta es obligatorio") ]
+        public double PrecioCompra { get; set; }
+
+        [Required(ErrorMessage = "El precio de compra es obligatorio") ]
+        public double PrecioVenta { get; set; }
     }
 }
