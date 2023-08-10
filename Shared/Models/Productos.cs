@@ -13,7 +13,7 @@ namespace Parcial2_Lisbeth.Shared.Models
         public int ProductoId { get; set; }
 
         [Required(ErrorMessage = "La descripcion es un campo obligatorio") ]
-        public string Descripcion { get; set; } = string.Empty;
+        public string? Descripcion { get; set; }
 
         [Required(ErrorMessage = "El tipo es obligatorio") ]
         public int Tipo { get; set; } 

@@ -10,7 +10,7 @@ using Parcial2_Lisbeth.Server.DAL;
 
 namespace Parcial2_Lisbeth.Server.Migrations
 {
-    [DbContext(typeof(Contexto))]
+    [DbContext(typeof(Context))]
     [Migration("20230711010733_Inicial")]
     partial class Inicial
     {

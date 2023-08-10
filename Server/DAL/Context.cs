@@ -3,12 +3,12 @@ using Parcial2_Lisbeth.Shared.Models;
 
 namespace Parcial2_Lisbeth.Server.DAL
 {
-    public class Contexto : DbContext
+    public class Context : DbContext
     {
         public DbSet<Entradas> Entradas { get; set; }
         public DbSet<Productos> Productos { get; set; }
 
-        public Contexto(DbContextOptions<Contexto> options)
+        public Context(DbContextOptions<Context> options)
             : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

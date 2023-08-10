@@ -11,9 +11,9 @@ namespace Parcial2_Lisbeth.Server.Controllers
 
     public class ProductosController : ControllerBase
     {
-        private readonly Contexto _context;
+        private readonly Context _context;
 
-        public ProductosController(Contexto context)
+        public ProductosController(Context context)
         {
             _context = context;
         }

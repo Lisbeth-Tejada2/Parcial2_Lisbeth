@@ -11,9 +11,9 @@ namespace Parcial2_Lisbeth.Server.Controllers
 
     public class EntradasController : ControllerBase
     {
-        private readonly Contexto _context;
+        private readonly Context _context;
 
-        public EntradasController(Contexto context)
+        public EntradasController(Context context)
         {
             _context = context;
         }

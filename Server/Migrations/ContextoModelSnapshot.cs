@@ -9,7 +9,7 @@ using Parcial2_Lisbeth.Server.DAL;
 
 namespace Parcial2_Lisbeth.Server.Migrations
 {
-    [DbContext(typeof(Contexto))]
+    [DbContext(typeof(Context))]
     partial class ContextoModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
