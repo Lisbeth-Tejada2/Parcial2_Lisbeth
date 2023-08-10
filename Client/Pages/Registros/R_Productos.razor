@@ -1,5 +1,7 @@
 ﻿@page "/R_Productos"
-@page "//{EntradaId:int}"
+
+@page "/R_Productos/{EntradaId:int}"
+
 @inject HttpClient httpClient
 @inject NotificationService notify
 
@@ -9,7 +11,7 @@
         <div class="card">
 
             <div class="card-header">
-                <h1>Entradas de productos empacados</h1>
+                <h3>Entradas de productos empacados</h3>
             </div>
 
             <div class="card-body">
