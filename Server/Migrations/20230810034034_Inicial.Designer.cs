@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Parcial2_Lisbeth.Server.DAL;
 
@@ -10,14 +11,16 @@ using Parcial2_Lisbeth.Server.DAL;
 namespace Parcial2_Lisbeth.Server.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20230810034034_Inicial")]
+    partial class Inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
 
-            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Entradas", b =>
+            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Models.Entradas", b =>
                 {
                     b.Property<int>("EntradaId")
                         .ValueGeneratedOnAdd()
@@ -33,9 +36,6 @@ namespace Parcial2_Lisbeth.Server.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PesoTotal")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("ProductoId")
                         .HasColumnType("INTEGER");
 
@@ -44,7 +44,7 @@ namespace Parcial2_Lisbeth.Server.Migrations
                     b.ToTable("Entradas");
                 });
 
-            modelBuilder.Entity("Parcial2_Lisbeth.Shared.EntradasDetalle", b =>
+            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Models.EntradasDetalle", b =>
                 {
                     b.Property<int>("DetalleId")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace Parcial2_Lisbeth.Server.Migrations
                     b.ToTable("EntradasDetalle");
                 });
 
-            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Productos", b =>
+            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Models.Productos", b =>
                 {
                     b.Property<int>("ProductoId")
                         .ValueGeneratedOnAdd()
@@ -79,8 +79,14 @@ namespace Parcial2_Lisbeth.Server.Migrations
                     b.Property<int>("Existencia")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("Tipo")
+                    b.Property<double>("PrecioDeCompra")
                         .HasColumnType("REAL");
+
+                    b.Property<double>("PrecioDeVenta")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ProductoId");
 
@@ -90,66 +96,80 @@ namespace Parcial2_Lisbeth.Server.Migrations
                         new
                         {
                             ProductoId = 1,
-                            Descripcion = "Maní",
-                            Existencia = 50,
-                            Tipo = 0f
+                            Descripcion = "Mani",
+                            Existencia = 250,
+                            PrecioDeCompra = 5.0,
+                            PrecioDeVenta = 8.0,
+                            Tipo = 0
                         },
                         new
                         {
                             ProductoId = 2,
                             Descripcion = "Pistachos",
-                            Existencia = 600,
-                            Tipo = 0f
+                            Existencia = 300,
+                            PrecioDeCompra = 15.0,
+                            PrecioDeVenta = 18.0,
+                            Tipo = 0
                         },
                         new
                         {
                             ProductoId = 3,
                             Descripcion = "Pasas",
-                            Existencia = 500,
-                            Tipo = 0f
+                            Existencia = 130,
+                            PrecioDeCompra = 5.0,
+                            PrecioDeVenta = 8.0,
+                            Tipo = 0
                         },
                         new
                         {
                             ProductoId = 4,
                             Descripcion = "Ciruelas",
-                            Existencia = 700,
-                            Tipo = 0f
+                            Existencia = 350,
+                            PrecioDeCompra = 10.0,
+                            PrecioDeVenta = 15.0,
+                            Tipo = 0
                         },
                         new
                         {
                             ProductoId = 5,
-                            Descripcion = "Mixto MPP 0.5LB",
-                            Existencia = 0,
-                            Tipo = 1f
+                            Descripcion = "Mixto MPP 0.5Lb",
+                            Existencia = 320,
+                            PrecioDeCompra = 30.0,
+                            PrecioDeVenta = 35.0,
+                            Tipo = 1
                         },
                         new
                         {
                             ProductoId = 6,
-                            Descripcion = "Mixto MPPC 0.5LB",
-                            Existencia = 0,
-                            Tipo = 1f
+                            Descripcion = "Mixto MPC 0.5Lb",
+                            Existencia = 310,
+                            PrecioDeCompra = 45.0,
+                            PrecioDeVenta = 50.0,
+                            Tipo = 1
                         },
                         new
                         {
                             ProductoId = 7,
-                            Descripcion = "Mixto MPPC 0.2LB",
-                            Existencia = 0,
-                            Tipo = 1f
+                            Descripcion = "Mixto MPP 0.2Lb",
+                            Existencia = 250,
+                            PrecioDeCompra = 20.0,
+                            PrecioDeVenta = 29.0,
+                            Tipo = 1
                         });
                 });
 
-            modelBuilder.Entity("Parcial2_Lisbeth.Shared.EntradasDetalle", b =>
+            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Models.EntradasDetalle", b =>
                 {
-                    b.HasOne("Parcial2_Lisbeth.Shared.Entradas", null)
-                        .WithMany("EntradasDetalle")
+                    b.HasOne("Parcial2_Lisbeth.Shared.Models.Entradas", null)
+                        .WithMany("entradasDetalle")
                         .HasForeignKey("EntradaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Entradas", b =>
+            modelBuilder.Entity("Parcial2_Lisbeth.Shared.Models.Entradas", b =>
                 {
-                    b.Navigation("EntradasDetalle");
+                    b.Navigation("entradasDetalle");
                 });
 #pragma warning restore 612, 618
         }

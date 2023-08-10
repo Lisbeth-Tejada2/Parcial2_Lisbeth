@@ -21,7 +21,6 @@ namespace Parcial2_Lisbeth.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Concepto = table.Column<string>(type: "TEXT", nullable: false),
-                    PesoTotal = table.Column<int>(type: "INTEGER", nullable: false),
                     ProductoId = table.Column<int>(type: "INTEGER", nullable: false),
                     CantidadProducida = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -37,8 +36,10 @@ namespace Parcial2_Lisbeth.Server.Migrations
                     ProductoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
-                    Tipo = table.Column<float>(type: "REAL", nullable: false),
-                    Existencia = table.Column<int>(type: "INTEGER", nullable: false)
+                    Tipo = table.Column<int>(type: "INTEGER", nullable: false),
+                    Existencia = table.Column<int>(type: "INTEGER", nullable: false),
+                    PrecioDeCompra = table.Column<double>(type: "REAL", nullable: false),
+                    PrecioDeVenta = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,16 +69,16 @@ namespace Parcial2_Lisbeth.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Productos",
-                columns: new[] { "ProductoId", "Descripcion", "Existencia", "Tipo" },
+                columns: new[] { "ProductoId", "Descripcion", "Existencia", "PrecioDeCompra", "PrecioDeVenta", "Tipo" },
                 values: new object[,]
                 {
-                    { 1, "Maní", 50, 0f },
-                    { 2, "Pistachos", 600, 0f },
-                    { 3, "Pasas", 500, 0f },
-                    { 4, "Ciruelas", 700, 0f },
-                    { 5, "Mixto MPP 0.5LB", 0, 1f },
-                    { 6, "Mixto MPPC 0.5LB", 0, 1f },
-                    { 7, "Mixto MPPC 0.2LB", 0, 1f }
+                    { 1, "Mani", 250, 5.0, 8.0, 0 },
+                    { 2, "Pistachos", 300, 15.0, 18.0, 0 },
+                    { 3, "Pasas", 130, 5.0, 8.0, 0 },
+                    { 4, "Ciruelas", 350, 10.0, 15.0, 0 },
+                    { 5, "Mixto MPP 0.5Lb", 320, 30.0, 35.0, 1 },
+                    { 6, "Mixto MPC 0.5Lb", 310, 45.0, 50.0, 1 },
+                    { 7, "Mixto MPP 0.2Lb", 250, 20.0, 29.0, 1 }
                 });
 
             migrationBuilder.CreateIndex(
