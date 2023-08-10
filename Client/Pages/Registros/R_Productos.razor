@@ -1,12 +1,9 @@
 ﻿@page "/RegistroProductos"
-@using System.Net.Http.Json;
-@using Parcial2_Lisbeth.Client.Extensors;
-@using Parcial2_Lisbeth.Shared.Models;
-@using Radzen;
+@page "/RegistroProductos/{EntradaId:int}"
 @inject HttpClient httpClient
 @inject NotificationService notify
 
-<EditForm Model="entradas" OnValidSubmit= "Guardar">
+<EditForm Model="entradas" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
     <fieldset>
         <div class="card">
@@ -21,7 +18,7 @@
                     <div class="input-group">
                         <InputNumber @bind-Value="entradas.EntradaId" class="form-control"></InputNumber>
                         <button type="button" class="btn btn-outline-primary oi oi-magnifying-glass"
-                        @onclick="Buscar"></button>
+                                @onclick="Buscar"></button>
                     </div>
                 </div>
 
@@ -143,7 +140,7 @@
             L_Productos = productos;
         }
 
-        if(EntradaId > 0)
+        if (EntradaId > 0)
         {
             this.entradas.EntradaId = EntradaId;
             this.Buscar();
@@ -276,7 +273,7 @@
             }
         }
     }
-    
+
     public async Task Eliminar()
     {
         using var response = await httpClient.DeleteAsync($"api/Entradas/{entradas.EntradaId}");
