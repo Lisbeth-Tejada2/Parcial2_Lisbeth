@@ -11,14 +11,14 @@ using Parcial2_Lisbeth.Server.DAL;
 namespace Parcial2_Lisbeth.Server.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230810034034_Inicial")]
+    [Migration("20230810133122_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
             modelBuilder.Entity("Parcial2_Lisbeth.Shared.Models.Entradas", b =>
                 {
@@ -98,8 +98,8 @@ namespace Parcial2_Lisbeth.Server.Migrations
                             ProductoId = 1,
                             Descripcion = "Mani",
                             Existencia = 250,
-                            PrecioDeCompra = 5.0,
-                            PrecioDeVenta = 8.0,
+                            PrecioDeCompra = 8.0,
+                            PrecioDeVenta = 15.0,
                             Tipo = 0
                         },
                         new
@@ -108,7 +108,7 @@ namespace Parcial2_Lisbeth.Server.Migrations
                             Descripcion = "Pistachos",
                             Existencia = 300,
                             PrecioDeCompra = 15.0,
-                            PrecioDeVenta = 18.0,
+                            PrecioDeVenta = 30.0,
                             Tipo = 0
                         },
                         new
@@ -116,8 +116,8 @@ namespace Parcial2_Lisbeth.Server.Migrations
                             ProductoId = 3,
                             Descripcion = "Pasas",
                             Existencia = 130,
-                            PrecioDeCompra = 5.0,
-                            PrecioDeVenta = 8.0,
+                            PrecioDeCompra = 10.0,
+                            PrecioDeVenta = 25.0,
                             Tipo = 0
                         },
                         new
@@ -125,36 +125,36 @@ namespace Parcial2_Lisbeth.Server.Migrations
                             ProductoId = 4,
                             Descripcion = "Ciruelas",
                             Existencia = 350,
-                            PrecioDeCompra = 10.0,
-                            PrecioDeVenta = 15.0,
+                            PrecioDeCompra = 25.0,
+                            PrecioDeVenta = 50.0,
                             Tipo = 0
                         },
                         new
                         {
                             ProductoId = 5,
-                            Descripcion = "Mixto MPP 0.5Lb",
+                            Descripcion = "Mixto MPP",
                             Existencia = 320,
                             PrecioDeCompra = 30.0,
-                            PrecioDeVenta = 35.0,
-                            Tipo = 1
+                            PrecioDeVenta = 60.0,
+                            Tipo = 0
                         },
                         new
                         {
                             ProductoId = 6,
-                            Descripcion = "Mixto MPC 0.5Lb",
+                            Descripcion = "Mixto MPC",
                             Existencia = 310,
-                            PrecioDeCompra = 45.0,
-                            PrecioDeVenta = 50.0,
-                            Tipo = 1
+                            PrecioDeCompra = 30.0,
+                            PrecioDeVenta = 60.0,
+                            Tipo = 0
                         },
                         new
                         {
                             ProductoId = 7,
-                            Descripcion = "Mixto MPP 0.2Lb",
+                            Descripcion = "Mixto MPP",
                             Existencia = 250,
-                            PrecioDeCompra = 20.0,
-                            PrecioDeVenta = 29.0,
-                            Tipo = 1
+                            PrecioDeCompra = 25.0,
+                            PrecioDeVenta = 50.0,
+                            Tipo = 0
                         });
                 });
 

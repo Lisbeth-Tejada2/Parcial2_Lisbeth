@@ -72,13 +72,13 @@ namespace Parcial2_Lisbeth.Server.Migrations
                 columns: new[] { "ProductoId", "Descripcion", "Existencia", "PrecioDeCompra", "PrecioDeVenta", "Tipo" },
                 values: new object[,]
                 {
-                    { 1, "Mani", 250, 5.0, 8.0, 0 },
-                    { 2, "Pistachos", 300, 15.0, 18.0, 0 },
-                    { 3, "Pasas", 130, 5.0, 8.0, 0 },
-                    { 4, "Ciruelas", 350, 10.0, 15.0, 0 },
-                    { 5, "Mixto MPP 0.5Lb", 320, 30.0, 35.0, 1 },
-                    { 6, "Mixto MPC 0.5Lb", 310, 45.0, 50.0, 1 },
-                    { 7, "Mixto MPP 0.2Lb", 250, 20.0, 29.0, 1 }
+                    { 1, "Mani", 250, 8.0, 15.0, 0 },
+                    { 2, "Pistachos", 300, 15.0, 30.0, 0 },
+                    { 3, "Pasas", 130, 10.0, 25.0, 0 },
+                    { 4, "Ciruelas", 350, 25.0, 50.0, 0 },
+                    { 5, "Mixto MPP", 320, 30.0, 60.0, 0 },
+                    { 6, "Mixto MPC", 310, 30.0, 60.0, 0 },
+                    { 7, "Mixto MPP", 250, 25.0, 50.0, 0 }
                 });
 
             migrationBuilder.CreateIndex(
