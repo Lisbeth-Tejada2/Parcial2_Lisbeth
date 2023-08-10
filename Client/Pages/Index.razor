@@ -15,28 +15,4 @@ Según las indicacaciones en el PDF del parcial: compra y venta de frutos secos,
 Registro con su detalle (Guardar, Editar , Eliminar, Validar perfectamente)
 Hacer Consulta que permita filtrar por cualquier campo además de la fecha.
 
-<h2>Imagen de frutos</h2>
-
-@if (imageSource is not null)
-{
-    <p>
-        <img src="@imageSource" />
-    </p>
-}
-@for (var i = 1; i <= 3; i++)
-{
-    var imageId = i;
-    <button @onclick="() => ShowImage(imageId)">
-        Image @imageId
-    </button>
-}
-@code {
-    private string? imageSource;
-
-    private void ShowImage(int id)
-    {
-        imageSource = $"images/image{id}.png";
-    }
-}
-
 <SurveyPrompt Title="How is Blazor working for you?" />
